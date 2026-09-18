@@ -1251,33 +1251,77 @@
 
 /* Додано вирівнювання, щоб слайдер не ламався при різній висоті */
 .s6-swiper .swiper-wrapper {
-  align-items: flex-start; 
+  align-items: center; 
+
+}
+.s6-slide {
+
+/* Замість фіксованих пікселів ставимо auto, щоб слайд брав розмір контенту */
+
+width: auto !important;
+
+height: auto !important;
+
+position: relative;
+
+cursor: pointer;
+
+border-radius: 12px;
+
+box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.20);
+
+background: #1B1B1B;
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+align-items: center;
+
 }
 
-.s6-slide {
-  /* Замість фіксованих пікселів ставимо auto, щоб слайд брав розмір контенту */
-  width: auto !important; 
-  height: auto !important; 
-  position: relative;
-  cursor: pointer;
-  border-radius: 12px;
-  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.20);
-  background: #1B1B1B;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .s6-img {
-  width: auto;
-  height: auto;
-  max-height: 80vh; /* Обмеження висоти, щоб не вилазило за екран */
-  object-fit: contain;
-  display: block;
-  border-radius: 12px;
+
+width: auto;
+
+height: auto;
+
+max-height: 80vh; /* Обмеження висоти, щоб не вилазило за екран */
+
+object-fit: contain;
+
+display: block;
+
+border-radius: 12px;
+
+}
+.s6-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 32px;
+  padding-right: 24px;
+  margin-top: 50px;
+}
+.s6-title {
+  color: #FFFFFF;
+  font-size: 48px;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 38px;
+  margin: 0;
 }
 
+.s6-title-2 {
+  font-weight: 500;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #fff;
+}
 /* --- Контроли (Пагінація та стрілки) --- */
 .s6-controls {
   display: flex;
@@ -1449,11 +1493,7 @@
   overflow: hidden; /* Важливо для скруглення відео */
 }
 
-/* Контейнери відео для скрипта */
-.video-wrapper-small {
-  width: 100%;
-  height: 100%;
-}
+
 
 .video-player {
   width: 100%;
@@ -3026,7 +3066,7 @@ color: #bdbdbd;
   .s5-video-container { height: 23.864vw; border-radius: 5.455vw; outline: 0.227vw solid rgba(255, 255, 255, 0.4); outline-offset: -0.227vw; }
   .video-play-btn { width: 10vw; height: 10vw; }
 
-  .s6 { width: 100vw; padding: 13.636vw 0 13.636vw 5.455vw; }
+  .s6 { width: 100vw; padding: 0 0 13.636vw 5.455vw; }
   .s6-header { gap: 1.818vw; margin-bottom: 7.273vw; padding-right: 5.455vw; }
   .s6-label { gap: 1.818vw; }
   .s6-label-text { font-size: 4.545vw; }
