@@ -108,7 +108,7 @@
     font-family: 'LeagueGothic';
     text-align: center;
     color: #FFF3F6;
-    font-size: 47.3px;
+    font-size: 30px;
     font-weight: 400;
     text-transform: uppercase;
     line-height: 53px;
@@ -2690,7 +2690,7 @@ color: #bdbdbd;
   .s1-img-block-calendar img { height: 3.636vw; min-width: 3.636vw; }
   .s1-date-text { font-size: 3.295vw; }
   .s1-title-main { top: 20.455vw; font-size: 18.182vw; line-height: 20.455vw; }
-  .s1-title-sub { top: 39.318vw; font-size: 10.75vw; line-height: 12.045vw; }
+  .s1-title-sub { top: 39.318vw; font-size: 6.90vw; line-height: 12.045vw; }
   .s1-title-sub-2 { top: 52.273vw; font-size: 3.636vw; }
   .s1-img-block-signature { top: 60.682vw; }
   .s1-img-block-signature img { height: 7.727vw; }
