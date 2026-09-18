@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const values = container.querySelectorAll(itemSelector);
     if (values.length < 3) return;
 
-    const TOTAL_TIME = 24 * 60 * 60 * 1000;
+const TOTAL_TIME = 60 * 60 * 1000;
 
     let startTime = localStorage.getItem(storageKey);
 

@@ -1,29 +1,30 @@
 (function () {
   console.log('[VideoSlides] Script initialized for s6');
 
-var VIDEO_MAP = {
-  '1.webp':  'https://itden-cdn.b-cdn.net/stretching/sdk23o.MP4',
-  '4.webp':  'https://itden-cdn.b-cdn.net/stretching/vd-2.mp4',
-  '8.webp':  'https://itden-cdn.b-cdn.net/stretching/vd-3.mp4',
-  '13.webp': 'https://itden-cdn.b-cdn.net/stretching/vd-4.mp4',
-  '18.webp': 'https://itden-cdn.b-cdn.net/stretching/video2.MP4',
-  '21.webp': 'https://itden-cdn.b-cdn.net/stretching/video4.MP4',
-  '24.webp': 'https://itden-cdn.b-cdn.net/stretching/Instagram_15.04.2026_MiddleSplit_Video.mp4',
-  '25.webp': 'https://itden-cdn.b-cdn.net/stretching/video5.MP4',
-  '27.webp': 'https://itden-cdn.b-cdn.net/stretching/Instagram_15.04.2026_FullSplit_Video.MP4',
-  '29.webp': 'https://itden-cdn.b-cdn.net/stretching/vd-10.mp4',
-  '31.webp': 'https://itden-cdn.b-cdn.net/stretching/feur289aew.mp4',
-  '32.webp': 'https://itden-cdn.b-cdn.net/stretching/vd-11.MP4',
-  '34.webp': 'https://itden-cdn.b-cdn.net/stretching/Splits%20Course%20from%20Zubalenok%20on%20IG.mp4'
-};
+  var VIDEO_MAP = {
+    '1.webp':  'https://itden-cdn.b-cdn.net/stretching/sdk23o.MP4',
+    '4.webp':  'https://itden-cdn.b-cdn.net/stretching/vd-2.mp4',
+    '8.webp':  'https://itden-cdn.b-cdn.net/stretching/vd-3.mp4',
+    '13.webp': 'https://itden-cdn.b-cdn.net/stretching/vd-4.mp4',
+    '18.webp': 'https://itden-cdn.b-cdn.net/stretching/video2.MP4',
+    '21.webp': 'https://itden-cdn.b-cdn.net/stretching/video4.MP4',
+    '24.webp': 'https://itden-cdn.b-cdn.net/stretching/Instagram_15.04.2026_MiddleSplit_Video.mp4',
+    '25.webp': 'https://itden-cdn.b-cdn.net/stretching/video5.MP4',
+    '27.webp': 'https://itden-cdn.b-cdn.net/stretching/Instagram_15.04.2026_FullSplit_Video.MP4',
+    '29.webp': 'https://itden-cdn.b-cdn.net/stretching/vd-10.mp4',
+    '31.webp': 'https://itden-cdn.b-cdn.net/stretching/feur289aew.mp4',
+    '32.webp': 'https://itden-cdn.b-cdn.net/stretching/vd-11.MP4',
+    '34.webp': 'https://itden-cdn.b-cdn.net/stretching/Splits%20Course%20from%20Zubalenok%20on%20IG.mp4'
+  };
 
-  // 1. Ініціалізація Swiper Слайдера
   function initSwiper() {
     var gallerySwiperEl = document.querySelector('.s6-swiper');
     if (gallerySwiperEl) {
       var swiper = new Swiper(gallerySwiperEl, {
         slidesPerView: 'auto',
         spaceBetween: 20,
+        observer: true,          // Виправлення багу: змушує Swiper оновлюватись
+        observeParents: true,    // при зміні розмірів картинок
         pagination: {
           el: '.s6-pagination',
           clickable: true
@@ -36,10 +37,12 @@ var VIDEO_MAP = {
 
       swiper.on('slideChangeTransitionStart', killAllVideos);
       swiper.on('sliderMove', killAllVideos);
+
+      // Виправлення багу: оновлюємо слайдер після повного завантаження картинок
+      setTimeout(() => swiper.update(), 500); 
     }
   }
 
-  // 2. Функція витягування посилання на відео з data-video або VIDEO_MAP
   function getVideoUrl(slide, img) {
     if (slide) {
       var directUrl = slide.getAttribute('data-video');
@@ -51,7 +54,6 @@ var VIDEO_MAP = {
     return VIDEO_MAP[filename] || null;
   }
 
-  // 3. Знищення активних плеєрів та відновлення фотографій
   function killAllVideos() {
     var videos = document.querySelectorAll('.s6-slide video');
     videos.forEach(function (v) {
@@ -67,7 +69,6 @@ var VIDEO_MAP = {
     });
   }
 
-  // 4. Відкриття та відтворення відео
   function openVideo(slide, url) {
     killAllVideos();
 
@@ -103,7 +104,6 @@ var VIDEO_MAP = {
     }
   }
 
-  // 5. Глобальні слухачі подій
   function initGlobalListeners() {
     initSwiper();
 
@@ -131,9 +131,6 @@ var VIDEO_MAP = {
     }, { passive: true });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initGlobalListeners);
-  } else {
-    initGlobalListeners();
-  }
+  // Виправлення багу: запускаємо тільки коли все завантажилось, щоб ширина прорахувалась
+  window.addEventListener('load', initGlobalListeners);
 })();

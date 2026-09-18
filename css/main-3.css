@@ -1237,173 +1237,318 @@
     opacity: 0.8;
   }
 
-.s6 {
-    width: 440px;
-    background: #090606;
-    padding: 60px 0 60px 24px;
-    box-sizing: border-box;
-    margin: 0 auto;
-    overflow: hidden;
-    position: relative;
-  }
 
-  /* --- Заголовок --- */
-  .s6-header {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 32px;
-    padding-right: 24px;
-  }
 
-  .s6-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
 
-  .s6-quote-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  .s6-label-text {
-    color: #FFFFFF;
-    font-size: 20px;
-    font-weight: 400;
-    text-transform: uppercase;
-    line-height: 1;
-  }
 
-  .s6-title {
-    color: #FFFFFF;
-    font-size: 48px;
-    font-weight: 400;
-    text-transform: uppercase;
-    line-height: 38px;
-    margin: 0;
-  }
 
-  .s6-title-2{
-    font-weight: 500;
-font-size: 18px;
-text-transform: uppercase;
-color: #fff;
-  }
+/* --- Слайдер та картки --- */
+.s6-swiper {
+  width: 100%;
+  overflow: hidden; /* Краще залишити hidden для коректної роботи autoHeight */
+}
 
-  /* --- Слайдер та картки --- */
-  .s6-swiper {
-    width: 100%;
-    overflow: visible !important; /* Дозволяє бачити наступний слайд, що виходить за межі екрана */
-  }
+/* Додано вирівнювання, щоб слайдер не ламався при різній висоті */
+.s6-swiper .swiper-wrapper {
+  align-items: flex-start; 
+}
 
-  .s6-slide {
-    width: 295px !important;
-    height: 524px;
-    position: relative;
-    cursor: pointer;
-    border-radius: 12px;
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.20);
-    overflow: hidden;
-    background: #1B1B1B;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+.s6-slide {
+  /* Замість фіксованих пікселів ставимо auto, щоб слайд брав розмір контенту */
+  width: auto !important; 
+  height: auto !important; 
+  position: relative;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.20);
+  background: #1B1B1B;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  .s6-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
-  }
+.s6-img {
+  width: auto;
+  height: auto;
+  max-height: 80vh; /* Обмеження висоти, щоб не вилазило за екран */
+  object-fit: contain;
+  display: block;
+  border-radius: 12px;
+}
 
-  /* --- Контроли (Пагінація та стрілки) --- */
-  .s6-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 24px;
-    margin-top: 24px;
-  }
+/* --- Контроли (Пагінація та стрілки) --- */
+.s6-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 24px;
+  margin-top: 24px;
+}
 
-  /* Пагінація */
-  .s6-pagination {
-    display: flex;
-    max-width: 190px;
-    margin-top: 17px;
-    overflow: hidden;
-    gap: 10px;
-    align-items: center;
-    position: relative !important;
-    width: auto !important;
-  }
+/* Пагінація */
+.s6-pagination {
+  display: flex;
+  max-width: 190px;
+  margin-top: 17px;
+  overflow: hidden;
+  gap: 10px;
+  align-items: center;
+  position: relative !important;
+  width: auto !important;
+}
 
-  .s6-pagination .swiper-pagination-bullet {
-    min-width: 8px !important;
-    height: 8px !important;
-    background: transparent !important;
-    border: 1px solid #fff !important;
-    opacity: 0.5 !important;
-    margin: 0 !important;
-    border-radius: 50% !important;
-    transition: all 0.2s ease;
-  }
+.s6-pagination .swiper-pagination-bullet {
+  min-width: 8px !important;
+  height: 8px !important;
+  background: transparent !important;
+  border: 1px solid #fff !important;
+  opacity: 0.5 !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease;
+}
 
-  .s6-pagination .swiper-pagination-bullet-active {
-    background: #fff !important;
-    border: none !important;
-    opacity: 1 !important;
-  }
+.s6-pagination .swiper-pagination-bullet-active {
+  background: #fff !important;
+  border: none !important;
+  opacity: 1 !important;
+}
 
-  /* Стрілки навігації */
-  .s6-nav {
-    display: flex;
-    gap: 14px;
-  }
+/* Стрілки навігації */
+.s6-nav {
+  display: flex;
+  gap: 14px;
+}
 
-  .s6-prev,
-  .s6-next {
-    width: 45px !important;
-    height: 45px !important;
-    background: linear-gradient(90deg, #B0002B 0%, #660A22 100%) !important;
-    border-radius: 50% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: static !important;
-    margin: 0 !important;
-    cursor: pointer;
-    z-index: 10;
-  }
+.s6-prev,
+.s6-next {
+  width: 45px !important;
+  height: 45px !important;
+  background: linear-gradient(90deg, #B0002B 0%, #660A22 100%) !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: static !important;
+  margin: 0 !important;
+  cursor: pointer;
+  z-index: 10;
+}
 
-  .s6-prev{
-    transform: rotate(180deg);
-  }
+.s6-prev.swiper-button-disabled,
+.s6-next.swiper-button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-  .s6-prev.swiper-button-disabled,
-  .s6-next.swiper-button-disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.s6-prev::after,
+.s6-next::after {
+  display: none !important;
+}
 
-  .s6-prev::after,
-  .s6-next::after {
-    display: none !important;
-  }
+.s6-prev img {
+  transform: rotate(180deg);
+}
 
-  .s6-prev svg,
-  .s6-next svg {
-    width: 24px;
-    height: 24px;
-  }
 
-  .s6-prev svg {
-    transform: rotate(180deg);
-  }
+
+
+.tr11 {
+  width: 428px;
+  padding: 40px 24px;
+  background: #090606;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+/* Заголовок блоку */
+.tr11-header {
+  width: 100%;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.tr11-main-title {
+  text-align: center;
+  margin: 0;
+  line-height: 48px;
+  text-transform: uppercase;
+  letter-spacing: 0.96px;
+}
+
+.tr11-title-white {
+  color: white;
+  font-size: 48px;
+  font-family: 'League Gothic', sans-serif;
+  font-weight: 400;
+}
+
+.tr11-title-pink {
+  color: #F880B2;
+  font-size: 48px;
+  line-height: 60%;
+  font-family: 'League Gothic', sans-serif;
+  font-weight: 400;
+}
+
+.tr11-subtitle {
+  width: 100%;
+  text-align: center;
+  color: white;
+  line-height: 70%;
+  font-size: 20px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 400;
+  line-height: 19px;
+  margin: 0;
+}
+
+/* Обгортка списку кроків */
+.tr11-steps-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Окрема картка кроку */
+.tr11-step-card {
+  width: 100%;
+  height: 145px;
+  padding: 8px;
+  background: linear-gradient(180deg, #E04E87 0%, rgba(224, 78, 135, 0.20) 100%);
+  border-radius: 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+/* Блок з відео */
+.tr11-step-video {
+  width: 200px;
+  height: 101px;
+  background: #1B1B1B;
+  border-radius: 24px;
+  outline: 1px solid white;
+  outline-offset: -1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Важливо для скруглення відео */
+}
+
+/* Контейнери відео для скрипта */
+.video-wrapper-small {
+  width: 100%;
+  height: 100%;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Текстовий блок в картці */
+.tr11-step-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+}
+
+.tr11-content-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.tr11-content-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.tr11-step-title {
+  width: 100%;
+  color: white;
+  font-size: 32px;
+  font-family: 'League Gothic', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 35px;
+  word-wrap: break-word;
+}
+
+.tr11-step-desc {
+  width: 100%;
+  color: white;
+  font-size: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+
+/* Стилі для кастомного оверлея плеєра, який генерує скрипт */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.video-play-btn {
+  width: 44px;
+  height: 44px;
+  transition: opacity 0.3s ease;
+  box-shadow: 0px 0px 33px rgba(241, 144, 196, 0.66);
+  border-radius: 50%;
+}
+
+.video-play-btn svg {
+  width: 100%;
+  height: 100%;
+}
+
+.video-overlay.is-playing {
+  background: transparent;
+}
+
+.video-overlay.is-playing .video-play-btn {
+  opacity: 0;
+}
+
+.video-overlay.is-playing:hover .video-play-btn {
+  opacity: 1;
+}
+
+
+
+
+
+
+
 
 .st7 {
     width: 440px;
@@ -1991,7 +2136,7 @@ background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255,
   justify-content: center;
   align-items: center;
   border-radius: 24px;
-  background: linear-gradient(149.26deg, #ff9bc4 -11.6%, #eb4d8f 74.98%), rgba(255, 0, 106, 0.5);
+  background: linear-gradient(90deg, #fb3f8c 0%, #f5277c 100%);
   border: none;
   cursor: pointer;
   transition: transform 0.15s ease, opacity 0.15s ease;
@@ -2507,17 +2652,41 @@ height: 36px;
   gap: 4px;
 }
 
-.textp{
+/* Контейнер із вашими розмірами та фоном, який ховає зайве */
+.marquee-container {
+  width: 428px;
+  height: 28px;
+  background: #f074ae;
+  overflow: hidden;
+  display: flex;
+  align-items: center; /* Вирівнювання тексту по вертикалі */
+}
+
+/* Обгортка для тексту, яка безпосередньо рухається */
+.marquee-content {
+  display: flex;
   white-space: nowrap;
+  animation: scroll-left 12s linear infinite; /* 12s — швидкість (збільште для ще повільнішого руху) */
+}
+
+/* Ваші стилі тексту */
+.textp {
   font-weight: 500;
-font-size: 16px;
-line-height: 125%;
-text-align: center;
-color: #fff;
-padding: 4px 0;
-width: 428px;
-height: 28px;
-background: #f074ae;
+  font-size: 16px;
+  line-height: 125%;
+  color: #fff;
+  margin: 0;
+  padding: 0 4px; /* Невеликий відступ, щоб кінець і початок не злипались */
+}
+
+/* Анімація зсуву вліво */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Зсуває рівно на один блок тексту для ідеального циклу */
+  }
 }
 
 .s13__benefit-title {
@@ -2575,6 +2744,72 @@ background: #f074ae;
   font-family: 'SourceSans3-Bold';
 }
 
+
+@media (max-width: 440px) {
+  .tr11 {
+    width: 100vw;
+    padding: 9.346vw 5.607vw;
+    gap: 5.607vw;
+  }
+  
+  .tr11-header {
+    border-radius: 2.804vw;
+    gap: 3.271vw;
+  }
+  
+  .tr11-main-title {
+    line-height: 11.215vw;
+    letter-spacing: 0.224vw;
+  }
+  
+  .tr11-title-white,
+  .tr11-title-pink {
+    font-size: 11.215vw;
+  }
+  
+  .tr11-subtitle {
+    font-size: 4.673vw;
+    line-height: 4.439vw;
+  }
+  
+  .tr11-steps-wrapper {
+    gap: 3.271vw;
+  }
+  
+  .tr11-step-card {
+    height: 33.879vw;
+    padding: 1.869vw;
+    border-radius: 5.607vw;
+    gap: 3.271vw;
+  }
+  
+  .tr11-step-video {
+    width: 46.729vw;
+    height: 23.598vw;
+    border-radius: 5.607vw;
+    outline: 0.234vw solid white;
+    outline-offset: -0.234vw;
+  }
+  
+  .tr11-step-content {
+    gap: 0.467vw;
+  }
+  
+  .tr11-step-title {
+    font-size: 7.477vw;
+    line-height: 8.178vw;
+  }
+  
+  .tr11-step-desc {
+    font-size: 3.271vw;
+  }
+  
+  .video-play-btn {
+    width: 10.280vw;
+    height: 10.280vw;
+    box-shadow: 0vw 0vw 7.710vw rgba(241, 144, 196, 0.66);
+  }
+}
 
 
 
@@ -2898,7 +3133,7 @@ color: #bdbdbd;
   .s13__benefit--last { padding-bottom: 5.682vw; border-bottom: 0.227vw solid #582D34; }
   .s13__benefit-icon { width: 8.182vw; height: 8.182vw; }
   .s13__benefit-text { gap: 0.909vw; }
-  .textp { font-size: 3.636vw; padding: 0.909vw 0; width: 97.273vw; height: 6.364vw; }
+  .textp { font-size: 3.636vw; padding: 0.909vw 0;height: 6.364vw; }
   .s13__benefit-title { font-size: 5vw; gap: 3.409vw; padding-bottom: 2.273vw; }
   .s13__benefit-desc { font-size: 4.091vw; }
   .s13__trust { padding-top: 3.636vw; }
